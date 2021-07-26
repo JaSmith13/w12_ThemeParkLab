@@ -2,6 +2,7 @@ package stalls;
 
 import org.junit.Before;
 import org.junit.Test;
+import people.Visitor;
 
 import static org.junit.Assert.assertEquals;
 
@@ -27,5 +28,17 @@ public class TobaccoStallTest {
     @Test
     public void hasParkingSpot() {
         assertEquals(ParkingSpot.B1, tobaccoStall.getParkingSpot());
+    }
+
+    @Test
+    public void canBuyIfAgeOver18(){
+        Visitor visitor = new Visitor(30, 170, 0);
+        assertEquals(true, tobaccoStall.isAllowedTo(visitor));
+    }
+
+    @Test
+    public void cannotBuyIfAgeUnder18(){
+        Visitor visitor = new Visitor(17, 150, 5);
+        assertEquals(false, tobaccoStall.isAllowedTo(visitor));
     }
 }
